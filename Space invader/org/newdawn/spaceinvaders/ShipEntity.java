@@ -1,17 +1,17 @@
-package org.newdawn.spaceinvaders;
+
 
 /**
  * The entity that represents the players ship
- * 
+ *
  * @author Kevin Glass
  */
 public class ShipEntity extends Entity {
 	/** The game in which the ship exists */
 	private Game game;
-	
+
 	/**
 	 * Create a new entity to represent the players ship
-	 *  
+	 *
 	 * @param game The game in which the ship is being created
 	 * @param ref The reference to the sprite to show for the ship
 	 * @param x The initial x location of the player's ship
@@ -19,14 +19,14 @@ public class ShipEntity extends Entity {
 	 */
 	public ShipEntity(Game game,String ref,int x,int y) {
 		super(ref,x,y);
-		
+
 		this.game = game;
 	}
-	
+
 	/**
 	 * Request that the ship move itself based on an elapsed ammount of
 	 * time
-	 * 
+	 *
 	 * @param delta The time that has elapsed since last move (ms)
 	 */
 	public void move(long delta) {
@@ -40,13 +40,13 @@ public class ShipEntity extends Entity {
 		if ((dx > 0) && (x > 750)) {
 			return;
 		}
-		
+
 		super.move(delta);
 	}
-	
+
 	/**
 	 * Notification that the player's ship has collided with something
-	 * 
+	 *
 	 * @param other The entity with which the ship has collided
 	 */
 	public void collidedWith(Entity other) {
