@@ -303,7 +303,7 @@ public class Game extends Canvas {
 			if (waitingForKeyPress) {
 				g.setColor(Color.white);
 				g.drawString(message,(800-g.getFontMetrics().stringWidth(message))/2,250);
-				g.drawString("Press any key",(800-g.getFontMetrics().stringWidth("Press any key"))/2,300);
+				g.drawString("Press o for the options or any other key to start the game",(800-g.getFontMetrics().stringWidth("Press o for the options or any other key to start the game"))/2,300);
 			}
 
 			// finally, we've completed drawing so clear up the graphics
@@ -412,15 +412,20 @@ public class Game extends Canvas {
 			// the shoot or move keys, hence the use of the "pressCount"
 			// counter.
 			if (waitingForKeyPress) {
-				if (pressCount == 1) {
+				if (pressCount == 1 && e.getKeyChar() != 111) {
 					// since we've now recieved our key typed
 					// event we can mark it as such and start
 					// our new game
 					waitingForKeyPress = false;
 					startGame();
 					pressCount = 0;
+				} else if (e.getKeyChar() == 111 || e.getKeyChar() == 79){
+					waitingForKeyPress = false;
+					spawnOptionPane();
+					waitingForKeyPress = true;
+					pressCount = 0;
 				} else {
-					pressCount++;
+					pressCount ++;
 				}
 			}
 
@@ -430,6 +435,14 @@ public class Game extends Canvas {
 			}
 		}
 	}
+
+	/**
+	 *
+	 */
+
+	 public void spawnOptionPane() {
+		 OptionPane options = new OptionPane(this);
+	 }
 
 	/**
 	 * The entry point into the game. We'll simply create an
