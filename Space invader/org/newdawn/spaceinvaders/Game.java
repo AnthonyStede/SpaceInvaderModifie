@@ -202,8 +202,6 @@ public class Game extends Canvas {
 			Entity entity = (Entity) entities.get(i);
 
 			if (entity instanceof AlienEntity) {
-				// speed up by 2%
-				entity.setHorizontalMovement(entity.getHorizontalMovement() * 1.02);
 				// speed up by speedIncrease%
 				entity.setHorizontalMovement(entity.getHorizontalMovement() * speedIncrease);
 				System.out.println(entity.getHorizontalMovement());
@@ -442,11 +440,9 @@ public class Game extends Canvas {
 	}
 
 	/**
-	 *
 	 * This function instantiates the class OptionPane,
 	 * this pane is made for the player to modify the difficulty or the spirtes used
 	 */
-
 	 public void spawnOptionPane() {
 		 OptionPane options = new OptionPane(this);
 	 }

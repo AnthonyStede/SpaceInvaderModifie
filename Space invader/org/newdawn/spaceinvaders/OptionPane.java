@@ -16,7 +16,6 @@ public class OptionPane extends JFrame {
   Game game;
 
   public OptionPane(Game originGame) {
-    System.out.println("zbleh v3");
     this.contentPane = (JPanel) this.getContentPane();
     this.game = originGame;
 
