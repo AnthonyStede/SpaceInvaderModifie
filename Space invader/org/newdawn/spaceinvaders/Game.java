@@ -63,6 +63,8 @@ public class Game extends Canvas {
 	private boolean logicRequiredThisLoop = false;
 	/** Speed increase coefficient after the death of an Alien */
 	private double speedIncrease = 1.02;
+	/** Le score */
+	private int score = 0;
 
 	/**
 	 * Construct our game and set it running.
@@ -138,6 +140,9 @@ public class Game extends Canvas {
 		ship = new ShipEntity(this,"sprites/ship.gif",370,550);
 		entities.add(ship);
 
+		/** Initialise le score */
+		score = 3000
+
 		// create a block of aliens (5 rows, by 12 aliens, spaced evenly)
 		alienCount = 0;
 		for (int row=0;row<5;row++) {
@@ -181,7 +186,7 @@ public class Game extends Canvas {
 	 * are dead.
 	 */
 	public void notifyWin() {
-		message = "Well done! You Win!";
+		message = "Well done! You Win! Your score is "+ score;
 		waitingForKeyPress = true;
 	}
 
@@ -191,6 +196,7 @@ public class Game extends Canvas {
 	public void notifyAlienKilled() {
 		// reduce the alient count, if there are none left, the player has won!
 		alienCount--;
+		score += 200;
 
 		if (alienCount == 0) {
 			notifyWin();
@@ -287,6 +293,9 @@ public class Game extends Canvas {
 			// remove any entity that has been marked for clear up
 			entities.removeAll(removeList);
 			removeList.clear();
+
+			// Baisse le score avec le temps
+			score -=1;
 
 			// if a game event has indicated that game logic should
 			// be resolved, cycle round every entity requesting that
