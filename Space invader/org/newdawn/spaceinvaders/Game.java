@@ -61,6 +61,8 @@ public class Game extends Canvas {
 	private boolean firePressed = false;
 	/** True if game logic needs to be applied this loop, normally as a result of a game event */
 	private boolean logicRequiredThisLoop = false;
+	/** Speed increase coefficient after the death of an Alien */
+	private double speedIncrease = 1.02;
 
 	/**
 	 * Construct our game and set it running.
@@ -200,8 +202,8 @@ public class Game extends Canvas {
 			Entity entity = (Entity) entities.get(i);
 
 			if (entity instanceof AlienEntity) {
-				// speed up by 2%
-				entity.setHorizontalMovement(entity.getHorizontalMovement() * 1.02);
+				// speed up by speedIncrease%
+				entity.setHorizontalMovement(entity.getHorizontalMovement() * speedIncrease);
 			}
 		}
 	}
@@ -437,12 +439,40 @@ public class Game extends Canvas {
 	}
 
 	/**
-	 *
+	 * This function instantiates the class OptionPane,
+	 * this pane is made for the player to modify the difficulty or the spirtes used
 	 */
-
 	 public void spawnOptionPane() {
 		 OptionPane options = new OptionPane(this);
 	 }
+
+	 /**
+	  * Sets the value of speedIncrease
+	 	*/
+	public void setSpeedIncrease(double value) {
+		this.speedIncrease = value;
+	}
+
+	/*
+	 * returns the value of the speedIncrease
+	 */
+	public double getSpeedIncrease() {
+		return this.speedIncrease;
+	}
+
+	/**
+	 * Sets the value of moveSpeed
+	 */
+ public void setMoveSpeed(double value) {
+	 this.moveSpeed = value;
+ }
+
+ /*
+	* returns the value of moveSpeed
+	*/
+ public double getMoveSpeed() {
+	 return this.moveSpeed;
+ }
 
 	/**
 	 * The entry point into the game. We'll simply create an
