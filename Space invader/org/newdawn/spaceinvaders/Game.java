@@ -141,7 +141,7 @@ public class Game extends Canvas {
 		entities.add(ship);
 
 		/** Initialise le score */
-		score = 3000
+		score = 3000;
 
 		// create a block of aliens (5 rows, by 12 aliens, spaced evenly)
 		alienCount = 0;
