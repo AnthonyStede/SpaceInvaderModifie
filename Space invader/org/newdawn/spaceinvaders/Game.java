@@ -35,7 +35,7 @@ public class Game extends Canvas {
 	/** True if the game is currently "running", i.e. the game loop is looping */
 	private boolean gameRunning = true;
 	/** The list of all the entities that exist in our game */
-	private ArrayList entities = new ArrayList();
+	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	/** The list of entities that need to be removed from the game this loop */
 	private ArrayList removeList = new ArrayList();
 	/** The entity representing the player */
@@ -51,6 +51,12 @@ public class Game extends Canvas {
 
 	/** The message to display which waiting for a key press */
 	private String message = "";
+  /** The sprite of aliens */
+	private String alienSprite = "sprites/alien.gif";
+	/** The sprite of ship */
+	private String shipSprite = "sprites/ship.gif";
+	/** The sprite of shot */
+	private String shotSprite = "sprites/shot.gif";
 	/** True if we're holding up game play until a key has been pressed */
 	private boolean waitingForKeyPress = true;
 	/** True if the left cursor key is currently pressed */
@@ -137,7 +143,7 @@ public class Game extends Canvas {
 	 */
 	private void initEntities() {
 		// create the player ship and place it roughly in the center of the screen
-		ship = new ShipEntity(this,"sprites/ship.gif",370,550);
+		ship = new ShipEntity(this,shipSprite,370,550);
 		entities.add(ship);
 
 		/** Initialise le score */
@@ -147,7 +153,7 @@ public class Game extends Canvas {
 		alienCount = 0;
 		for (int row=0;row<5;row++) {
 			for (int x=0;x<12;x++) {
-				Entity alien = new AlienEntity(this,"sprites/alien.gif",100+(x*50),(50)+row*30);
+				Entity alien = new AlienEntity(this,alienSprite,100+(x*50),(50)+row*30);
 				entities.add(alien);
 				alienCount++;
 			}
@@ -227,7 +233,7 @@ public class Game extends Canvas {
 
 		// if we waited long enough, create the shot entity, and record the time.
 		lastFire = System.currentTimeMillis();
-		ShotEntity shot = new ShotEntity(this,"sprites/shot.gif",ship.getX()+10,ship.getY()-30);
+		ShotEntity shot = new ShotEntity(this,shotSprite,ship.getX()+10,ship.getY()-30);
 		entities.add(shot);
 	}
 
@@ -481,6 +487,43 @@ public class Game extends Canvas {
 	*/
  public double getMoveSpeed() {
 	 return this.moveSpeed;
+ }
+
+ /*
+	* Set the sprite of aliens
+	*/
+ public void setAlienSprite(String spr) {
+	 for( Entity en : entities){
+		 if(en.getClass() == AlienEntity.class){
+			 this.alienSprite = spr;
+			  en.sprite = SpriteStore.get().getSprite(spr);
+		 }
+	 }
+ }
+
+ /*
+	* Set the sprite of ths ship
+	*/
+ public void setShipSprite(String spr) {
+	 for( Entity en : entities){
+		 if(en.getClass() == ShipEntity.class){
+			 this.shipSprite = spr;
+			  en.sprite = SpriteStore.get().getSprite(spr);
+		 }
+	 }
+ }
+
+ /*
+ * Set the sprite of bullets
+ */
+ public void setShotSprite(String spr) {
+	 for( Entity en : entities){
+		 this.shotSprite = spr;
+		 if(en.getClass() == ShotEntity.class){
+			  en.sprite = SpriteStore.get().getSprite(spr);
+				System.out.println("Ay");
+		 }
+	 }
  }
 
 	/**

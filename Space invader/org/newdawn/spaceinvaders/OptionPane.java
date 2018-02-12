@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.*;
 
 /**
  *  An option pane designed to allow the user to easily change
@@ -119,8 +120,23 @@ public class OptionPane extends JFrame {
     JPanel spriteAlien = new JPanel();
     spriteAlien.add(new JLabel ("Select the sprite of the aliens : "));
     JButton b1 = new JButton("", alien1);
+    b1.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setAlienSprite("sprites/alien.gif");
+      }
+    });
     JButton b2 = new JButton("", alien2);
+    b2.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setAlienSprite("sprites/alien2.gif");
+      }
+    });
     JButton b3 = new JButton("", alien3);
+    b3.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setAlienSprite("sprites/alien3.gif");
+      }
+    });
     spriteAlien.add(b1);
     spriteAlien.add(b2);
     spriteAlien.add(b3);
@@ -129,8 +145,23 @@ public class OptionPane extends JFrame {
     JPanel spriteShip = new JPanel();
     spriteShip.add(new JLabel ("Select the sprite of the ship : "));
     JButton b4 = new JButton("", ship1);
+    b4.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setShipSprite("sprites/ship.gif");
+      }
+    });
     JButton b5 = new JButton("", ship2);
+    b5.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setShipSprite("sprites/ship2.gif");
+      }
+    });
     JButton b6 = new JButton("", ship3);
+    b6.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setShipSprite("sprites/ship3.gif");
+      }
+    });
     spriteShip.add(b4);
     spriteShip.add(b5);
     spriteShip.add(b6);
@@ -139,8 +170,23 @@ public class OptionPane extends JFrame {
     JPanel spriteShot = new JPanel();
     spriteShot.add(new JLabel ("Select the sprite of the bullets : "));
     JButton b7 = new JButton("", shot1);
+    b7.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setShotSprite("sprites/shot.gif");
+      }
+    });
     JButton b8 = new JButton("", shot2);
+    b8.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setShotSprite("sprites/shot2.gif");
+      }
+    });
     JButton b9 = new JButton("", shot3);
+    b9.addActionListener(new OptionChangeSpriteListener(this.game){
+      public void actionPerformed(ActionEvent event){
+        this.modifiedGame.setShotSprite("sprites/shot3.gif");
+      }
+    });
     spriteShot.add(b7);
     spriteShot.add(b8);
     spriteShot.add(b9);
