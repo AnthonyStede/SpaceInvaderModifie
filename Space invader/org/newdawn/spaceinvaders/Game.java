@@ -502,6 +502,13 @@ public class Game extends Canvas {
  }
 
  /*
+	* Return the sprite of aliens
+	*/
+public String getAlienSprite() {
+	return this.alienSprite;
+}
+
+ /*
 	* Set the sprite of ths ship
 	*/
  public void setShipSprite(String spr) {
@@ -512,6 +519,13 @@ public class Game extends Canvas {
 		 }
 	 }
  }
+
+ /*
+	* Return the sprite of the ship
+	*/
+public String getShipSprite() {
+	return this.shipSprite;
+}
 
  /*
  * Set the sprite of bullets
@@ -525,6 +539,13 @@ public class Game extends Canvas {
 		 }
 	 }
  }
+
+ /*
+	* Return the sprite of bullets
+	*/
+public String getShotSprite() {
+	return this.shotSprite;
+}
 
 	/**
 	 * The entry point into the game. We'll simply create an
