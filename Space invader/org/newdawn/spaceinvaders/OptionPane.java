@@ -20,15 +20,10 @@ public class OptionPane extends JFrame {
 
   JPanel contentPane;
   Game game;
-  ImageIcon alien1;
-  ImageIcon alien2;
-  ImageIcon alien3;
-  ImageIcon ship1;
-  ImageIcon ship2;
-  ImageIcon ship3;
-  ImageIcon shot1;
-  ImageIcon shot2;
-  ImageIcon shot3;
+  JLabel speedIncreaseValue, moveSpeedValue;
+  ImageIcon alien1, alien2, alien3;
+  ImageIcon ship1, ship2, ship3;
+  ImageIcon shot1, shot2, shot3;
 
   public OptionPane(Game originGame) {
     this.contentPane = (JPanel) this.getContentPane();
@@ -72,6 +67,7 @@ public class OptionPane extends JFrame {
     img = shot3.getImage() ;
     newimg = img.getScaledInstance( 40, 40,  java.awt.Image.SCALE_SMOOTH ) ;
     shot3 = new ImageIcon( newimg );
+
     /**
     * We add a JSlider to the option pane and depending on it's value it will
     * change the value for the speed increase in the game in real time.
@@ -84,6 +80,7 @@ public class OptionPane extends JFrame {
     speedIncreaseSlider.addChangeListener(new OptionChangeListener(this.game){
       public void stateChanged(ChangeEvent event){
         this.modifiedGame.setSpeedIncrease((((JSlider)event.getSource()).getValue()*0.1)+1.0);
+        this.speedIncreaseValue.setText((((JSlider)event.getSource()).getValue()*0.1)+1.0);
       }
     });
 
@@ -99,6 +96,7 @@ public class OptionPane extends JFrame {
     moveSpeedSlider.addChangeListener(new OptionChangeListener(this.game){
       public void stateChanged(ChangeEvent event){
         this.modifiedGame.setMoveSpeed((double)(((JSlider)event.getSource()).getValue()));
+        this.moveSpeedValue.setText((double)(((JSlider)event.getSource()).getValue()))
       }
     });
 
@@ -106,11 +104,13 @@ public class OptionPane extends JFrame {
     JPanel speedIncreasePan = new JPanel();
     speedIncreasePan.add(new JLabel ("Select the speed increase coefficient after an Alien dies : "));
     speedIncreasePan.add(speedIncreaseSlider);
+    speedIncreasePan.add(this.speedIncreaseValue);
     this.add(speedIncreasePan);
 
     JPanel moveSpeedPan = new JPanel();
     moveSpeedPan.add(new JLabel ("Select the speed of the ship :             "));
     moveSpeedPan.add(moveSpeedSlider);
+    moveSpeedPan.add(this.moveSpeedValue);
     this.add(moveSpeedPan);
 
     this.setTitle("Options");
