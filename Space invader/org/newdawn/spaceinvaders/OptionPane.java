@@ -30,6 +30,9 @@ public class OptionPane extends JFrame {
     this.game = originGame;
     this.setLayout(new BoxLayout(this.getContentPane(), 1));
 
+    this.speedIncreaseValue = new JLabel();
+    this.moveSpeedValue = new JLabel();
+
     alien1 = new ImageIcon("sprites/alien.gif");
     alien2 = new ImageIcon("sprites/alien2.gif");
     alien3 = new ImageIcon("sprites/alien3.gif");
@@ -80,7 +83,7 @@ public class OptionPane extends JFrame {
     speedIncreaseSlider.addChangeListener(new OptionChangeListener(this.game){
       public void stateChanged(ChangeEvent event){
         this.modifiedGame.setSpeedIncrease((((JSlider)event.getSource()).getValue()*0.1)+1.0);
-        this.speedIncreaseValue.setText((((JSlider)event.getSource()).getValue()*0.1)+1.0);
+        speedIncreaseValue.setText(String.valueOf((((JSlider)event.getSource()).getValue()*0.1)+1.0));
       }
     });
 
@@ -96,7 +99,7 @@ public class OptionPane extends JFrame {
     moveSpeedSlider.addChangeListener(new OptionChangeListener(this.game){
       public void stateChanged(ChangeEvent event){
         this.modifiedGame.setMoveSpeed((double)(((JSlider)event.getSource()).getValue()));
-        this.moveSpeedValue.setText((double)(((JSlider)event.getSource()).getValue()))
+        moveSpeedValue.setText(String.valueOf((double)(((JSlider)event.getSource()).getValue())));
       }
     });
 
