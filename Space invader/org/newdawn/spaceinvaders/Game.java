@@ -11,8 +11,10 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  * The main hook of our game. This class with both act as a manager
@@ -69,7 +71,7 @@ public class Game extends Canvas {
 	private boolean logicRequiredThisLoop = false;
 	/** Speed increase coefficient after the death of an Alien */
 	private double speedIncrease = 1.02;
-	/** Le score */
+	/** The score */
 	private int score = 0;
 
 	/**
@@ -146,7 +148,7 @@ public class Game extends Canvas {
 		ship = new ShipEntity(this,shipSprite,370,550);
 		entities.add(ship);
 
-		/** Initialise le score */
+		/** Initialise the score */
 		score = 3000;
 
 		// create a block of aliens (5 rows, by 12 aliens, spaced evenly)
@@ -265,6 +267,10 @@ public class Game extends Canvas {
 			g.setColor(Color.black);
 			g.fillRect(0,0,800,600);
 
+			//Prepare for the score display
+			Graphics2D scoreGraphics = (Graphics2D) strategy.getDrawGraphics();
+			scoreGraphics.setColor(Color.white);
+
 			// cycle round asking each entity to move itself
 			if (!waitingForKeyPress) {
 				for (int i=0;i<entities.size();i++) {
@@ -279,6 +285,11 @@ public class Game extends Canvas {
 				Entity entity = (Entity) entities.get(i);
 
 				entity.draw(g);
+
+				//Affiche le score
+				if (!waitingForKeyPress){
+					scoreGraphics.drawString("Score : "+score,10,10);
+				}
 			}
 
 			// brute force collisions, compare every entity against
@@ -302,6 +313,7 @@ public class Game extends Canvas {
 
 			// Baisse le score avec le temps
 			score -=1;
+
 
 			// if a game event has indicated that game logic should
 			// be resolved, cycle round every entity requesting that
