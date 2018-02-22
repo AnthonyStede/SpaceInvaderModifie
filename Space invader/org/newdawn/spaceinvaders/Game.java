@@ -50,6 +50,8 @@ public class Game extends Canvas {
 	private long firingInterval = 500;
 	/** The number of aliens left on the screen */
 	private int alienCount;
+	/** The save method */
+	SaveScore save;
 
 	/** The message to display which waiting for a key press */
 	private String message = "";
@@ -72,7 +74,7 @@ public class Game extends Canvas {
 	/** Speed increase coefficient after the death of an Alien */
 	private double speedIncrease = 1.02;
 	/** The score */
-	private int score = 0;
+	private Integer score = 0;
 
 	/**
 	 * Construct our game and set it running.
@@ -195,6 +197,7 @@ public class Game extends Canvas {
 	 */
 	public void notifyWin() {
 		message = "Well done! You Win! Your score is "+ score;
+		/** + save.displayScores(); **/
 		waitingForKeyPress = true;
 	}
 
@@ -208,6 +211,7 @@ public class Game extends Canvas {
 
 		if (alienCount == 0) {
 			notifyWin();
+			save = new SaveScore(this.score);
 		}
 
 		// if there are still some aliens left then they all need to get faster, so
@@ -557,6 +561,17 @@ public String getShipSprite() {
 public String getShotSprite() {
 	return this.shotSprite;
 }
+
+/* Set the game's score*/
+public void setScore(int newScore){
+	this.score = newScore;
+}
+
+/* Return the game's score*/
+public Integer getScore(){
+	return this.score;
+}
+
 
 	/**
 	 * The entry point into the game. We'll simply create an
