@@ -547,7 +547,6 @@ public String getShipSprite() {
 		 this.shotSprite = spr;
 		 if(en.getClass() == ShotEntity.class){
 			  en.sprite = SpriteStore.get().getSprite(spr);
-				System.out.println("Ay");
 		 }
 	 }
  }
